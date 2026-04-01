@@ -40,8 +40,8 @@ def create_overlay():
 
 def main():
     print("Hello from my-rpa!")
-    screenshot = pyautogui.screenshot();
-    screenshot.save("screenshot.png");
+    # screenshot = pyautogui.screenshot();
+    # screenshot.save("screenshot.png");
     create_overlay()
 
 if __name__ == "__main__":
