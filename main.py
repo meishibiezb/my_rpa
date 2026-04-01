@@ -3,7 +3,7 @@ import tkinter as tk
 
 def create_overlay():
     root = tk.Tk()
-    root.title = "你妈妈死掉了"
+    root.title = "111"
     root.geometry("400x400+100+100")
     root.attributes('-topmost', True)
     root.config(bg='gray20')
