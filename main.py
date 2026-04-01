@@ -5,7 +5,11 @@ import keyboard
 def create_overlay():
     root = tk.Tk()
     root.title = "111"
-    root.geometry("400x400+100+100")
+
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    root.geometry(f"{screen_width}x{screen_height}+0+0")
+    
     root.attributes('-topmost', True)
     root.config(bg='gray20')
     root.attributes('-transparentcolor', 'gray20')
