@@ -1,5 +1,6 @@
 import pyautogui
 import tkinter as tk
+import keyboard
 
 def create_overlay():
     root = tk.Tk()
@@ -8,7 +9,7 @@ def create_overlay():
     root.attributes('-topmost', True)
     root.config(bg='gray20')
     root.attributes('-transparentcolor', 'gray20')
-    # root.overrideredirect(True)
+    root.overrideredirect(True)
 
     canvas = tk.Canvas(root, bg='gray20', highlightthickness=0)
     canvas.pack(expand=True, fill='both')
@@ -24,6 +25,12 @@ def create_overlay():
     )
 
     canvas.create_text(w/2, h/2, text="Canvas 画出的边框", fill='white', font=('Arial', 16))
+
+    def close_window(root):
+        print("关闭窗口")
+        root.destroy()
+    
+    keyboard.on_press_key("esc", lambda e: close_window(root))
 
     root.mainloop()
 
