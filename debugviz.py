@@ -4,17 +4,17 @@ import threading
 
 class DebugViz:
     def __init__(self):
-
         self.root = None
         self.canvas = None
         self.is_running = False
 
     def start(self):
+        print("start")
         self.is_running = True
 
         # 设置在另一个线程中运行GUI
         self.thread = threading.Thread(target=self._run_gui, daemon=True)
-        self.thread.start
+        self.thread.start()
 
     def _run_gui(self):
         # 设置窗口基本属性
@@ -48,6 +48,7 @@ class DebugViz:
             root.destroy()
         keyboard.on_press_key("esc", lambda : close_window(self.root))
 
+        print("开启mainloop")
         self.root.mainloop()
 
     def update_title(self, text):
