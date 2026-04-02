@@ -45,15 +45,17 @@ class DebugViz:
         )
         self.text_id = self.canvas.create_text(w/2, h/2, text="0", fill='white', font=('Arial', 16))
 
-        # 设置退出快捷键（以及定义回调函数）
-        def close_window(root):
-            print("关闭窗口")
-            self.is_running = False
-            root.destroy()
-        keyboard.on_press_key("esc", lambda e: close_window(self.root))
+
+        keyboard.on_press_key("esc", lambda e: self.close_window())
 
         print("开启mainloop")
         self.root.mainloop()
+
+    # 设置退出快捷键（以及定义回调函数）
+    def close_window(self):
+        print("关闭窗口")
+        self.is_running = False
+        self.root.destroy()
 
     def update_title(self, text):
         if self.root:

@@ -9,8 +9,8 @@ def create_overlay():
 
     while dbgv.is_running:
         dbgv.update_text(f"{count}")
-        print(f"{count}")
-        time.sleep(1)
+        # print(f"{count}")
+        time.sleep(0.1)
         count += 1
     # root = tk.Tk()
     # root.title = "111"
