@@ -46,7 +46,7 @@ class DebugViz:
         self.text_id = self.canvas.create_text(w/2, h/2, text="0", fill='white', font=('Arial', 16))
 
 
-        keyboard.on_press_key("esc", lambda e: self.close_window())
+        keyboard.add_hotkey("shift+esc", lambda: self.close_window())
 
         print("开启mainloop")
         self.root.mainloop()
