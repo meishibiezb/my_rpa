@@ -5,8 +5,12 @@ def create_overlay():
     dbgv = debugviz.DebugViz()
     dbgv.start()
 
+    count = 0;
+
     while True:
+        dbgv.update_text(f"{count}")
         time.sleep(0.1)
+        count += 1
     # root = tk.Tk()
     # root.title = "111"
 

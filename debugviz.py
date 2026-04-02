@@ -8,6 +8,9 @@ class DebugViz:
         self.canvas = None
         self.is_running = False
 
+        # 画面中的元素
+        self.text_id = None
+
     def start(self):
         print("start")
         self.is_running = True
@@ -40,13 +43,13 @@ class DebugViz:
             outline='lime',
             width=2
         )
-        self.canvas.create_text(w/2, h/2, text="0", fill='white', font=('Arial', 16))
+        self.text_id = self.canvas.create_text(w/2, h/2, text="0", fill='white', font=('Arial', 16))
 
         # 设置退出快捷键（以及定义回调函数）
         def close_window(root):
             print("关闭窗口")
             root.destroy()
-        keyboard.on_press_key("esc", lambda : close_window(self.root))
+        keyboard.on_press_key("esc", lambda e: close_window(self.root))
 
         print("开启mainloop")
         self.root.mainloop()
@@ -56,3 +59,11 @@ class DebugViz:
             def title(root, text):
                 root.title = text
             self.root.after(0, lambda: title(text=text))
+    
+    def update_text(self, text):
+        if self.root:
+            def text(root: tk.Tk, text):
+                if root and root.text_id:
+                    root.canvas.itemconfig(root.text_id, text=text)
+
+            self.root.after(0, text(self, text=text))
