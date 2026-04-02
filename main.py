@@ -7,7 +7,7 @@ def create_overlay():
 
     count = 0;
 
-    while True:
+    while dbgv.is_running:
         dbgv.update_text(f"{count}")
         print(f"{count}")
         time.sleep(1)

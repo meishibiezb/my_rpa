@@ -48,6 +48,7 @@ class DebugViz:
         # 设置退出快捷键（以及定义回调函数）
         def close_window(root):
             print("关闭窗口")
+            self.is_running = False
             root.destroy()
         keyboard.on_press_key("esc", lambda e: close_window(self.root))
 
