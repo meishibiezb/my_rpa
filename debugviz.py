@@ -56,14 +56,14 @@ class DebugViz:
 
     def update_title(self, text):
         if self.root:
-            def title(root, text):
+            def change_title(root, text):
                 root.title = text
-            self.root.after(0, lambda: title(text=text))
+            self.root.after(0, lambda: change_title(text=text))
     
     def update_text(self, text):
         if self.root:
-            def text(root: tk.Tk, text):
+            def change_text(root: DebugViz, text):
                 if root and root.text_id:
                     root.canvas.itemconfig(root.text_id, text=text)
 
-            self.root.after(0, text(self, text=text))
+            self.root.after(0, lambda: change_text(self, text=text))
