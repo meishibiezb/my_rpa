@@ -67,13 +67,13 @@ class DebugViz:
         self.root.destroy()
 
     def update_title(self, text):
-        if self.root:
+        if self.root & self.is_running:
             def change_title(root, text):
                 root.title = text
             self.root.after(0, lambda: change_title(text=text))
     
     def update_text(self, text):
-        if self.root:
+        if self.root & self.is_running:
             def change_text(root: DebugViz, text):
                 if root and root.text_id:
                     root.canvas.itemconfig(root.text_id, text=text)
@@ -95,7 +95,7 @@ class DebugViz:
         self.item_ids.append(item_id)
     
     def create_debug_border(self, x, y, w, h):
-        if self.root:
+        if self.root & self.is_running:
             self.root.after(0, lambda: self._create_debug_border(x, y, w, h))
 
     def _create_debug_text(self, x, y, t):
@@ -107,9 +107,9 @@ class DebugViz:
         self.item_ids.append(item_id)
 
     def create_debug_text(self, x, y, t):
-        if self.root:
+        if self.root & self.is_running:
             self.root.after(0, lambda: self._create_debug_text(x, y, t))
 
     def delete_debug_item(self, item_id):
-        if self.root:
+        if self.root & self.is_running:
             self.root.after(0, lambda: self.canvas.delete(item_id["id"]))
