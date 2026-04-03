@@ -80,7 +80,7 @@ class DebugViz:
 
             self.root.after(0, lambda: change_text(self, text=text))
 
-    def _create_debug_border(self, x, y, w, h):
+    def _create_debug_border(self, x, y, w, h, callback = None):
         border_width = 2
         border_id = self.canvas.create_rectangle(
             border_width + x, border_width + y, 
@@ -93,22 +93,28 @@ class DebugViz:
             "type" : DebugItem.BORDER
         }
         self.item_ids.append(item_id)
-    
-    def create_debug_border(self, x, y, w, h):
-        if self.root and self.is_running:
-            self.root.after(0, lambda: self._create_debug_border(x, y, w, h))
 
-    def _create_debug_text(self, x, y, t):
+        if callback:
+            callback(self, item_id)
+    
+    def create_debug_border(self, x, y, w, h, callback = None):
+        if self.root and self.is_running:
+            self.root.after(0, lambda: self._create_debug_border(x, y, w, h, callback))
+
+    def _create_debug_text(self, x, y, t, callback = None):
         t_id = self.canvas.create_text(x, y, text=t, fill='lime', font=('Arial', 16))
         item_id = {
             "id" : t_id,
             "type" : DebugItem.TEXT
         }
         self.item_ids.append(item_id)
+        
+        if callback:
+            callback(self, item_id)
 
-    def create_debug_text(self, x, y, t):
+    def create_debug_text(self, x, y, t, callback = None):
         if self.root and self.is_running:
-            self.root.after(0, lambda: self._create_debug_text(x, y, t))
+            self.root.after(0, lambda: self._create_debug_text(x, y, t, callback))
 
     def delete_debug_item(self, item_id):
         if self.root and self.is_running:
