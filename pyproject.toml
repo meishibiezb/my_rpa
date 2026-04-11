@@ -6,5 +6,6 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "keyboard>=0.13.5",
+    "opencv-python>=4.13.0.92",
     "pyautogui>=0.9.54",
 ]

@@ -118,4 +118,9 @@ class DebugViz:
 
     def delete_debug_item(self, item_id):
         if self.root and self.is_running:
+            self.item_ids.remove(item_id)
             self.root.after(0, lambda: self.canvas.delete(item_id["id"]))
+
+    def lift(self):
+        if self.root and self.is_running:
+            self.root.after(0, lambda: self.root.lift())
